@@ -27,4 +27,26 @@ val wait : t -> int -> t [@@js.call]
 
 val evaluate : t -> Ojs.t -> t [@@js.call]
 
+val evaluate_implicit : t -> t
+[@@js.custom
+  let evaluate_implicit n =
+    let fn = (Js.Unsafe.js_expr
+                "function eval(){
+                   return ocaml_nightmare_evaluation();
+                 }") in
+    evaluate n fn
+]
+
 val catch : t -> (Ojs.t -> unit) -> t [@@js.call]
+
+(* What about functions which require arguments ? *)
+val set_evaluation_fn : (unit -> Ojs.t) -> unit
+
+[@@js.custom
+  let set_evaluation_fn fn =
+    (Js.Unsafe.set
+       Js.Unsafe.global
+       "ocaml_nightmare_evaluation"
+       (Js.Unsafe.callback fn)
+    )
+]
