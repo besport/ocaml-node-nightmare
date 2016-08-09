@@ -37,9 +37,10 @@ val evaluate_implicit : t -> t
     evaluate n fn
 ]
 
+(** FIXME: seems to crash sometimes *)
 val catch : t -> (Ojs.t -> unit) -> t [@@js.call]
 
-(* What about functions which require arguments ? *)
+(** FIXME: What about functions which require arguments ? *)
 val set_evaluation_fn : (unit -> Ojs.t) -> unit
 
 [@@js.custom
