@@ -10,7 +10,5 @@ Node_nightmare.evaluate_implicit n;;
 Node_nightmare.end_ n ();;
 (*Node_nightmare.catch n (fun s -> Jsoo_lib.console_log (Ojs.string_of_js s));;*)
 Node_nightmare.then_ n (fun s ->
-    let _ = Node_jsonfile.write_file_sync json "file.json" s in
-    let obj = Ojs.string_of_js s in
-    Jsoo_lib.console_log obj
+    Node_jsonfile.write_file_sync json "file.json" s
   );;
