@@ -62,7 +62,7 @@ let evaluation : unit -> Ojs.t =
 let _ = set_evaluation_fn evaluation
 ```
 
-In our `test.js`:
+In our `test.ml`:
 ```OCaml
 let n = Node_nightmare.create true in
 let n = Node_nightmare.goto n "https://www.google.com/?q=github#safe=off&q=github" in
