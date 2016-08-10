@@ -81,6 +81,6 @@ let n = Node_nightmare.catch n
 ```
 
 ## What about the full documentation?
- 
+
 You can find the full documentation of `nightmare` on the github repo: 
 https://github.com/segmentio/nightmare.git
