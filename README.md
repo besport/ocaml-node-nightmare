@@ -8,7 +8,7 @@ ocaml-node-nightmare is a binding to the node module nightmare in OCaml using ge
 
 ## How to install?
 
-You need to switch to ocaml **4.03.0**:
+You need to switch to OCaml **4.03.0**:
 
 `opam switch 4.03.0`
 
@@ -47,8 +47,9 @@ nightmare.goto("https://www.google.com/?q=github#safe=off&q=github")
          });
 ```
 
-Equivalent in OCaml using gen_js_api (for Ojs.t type):
-In our `data.ml`:
+Equivalent in OCaml using [gen_js_api](https://github.com/lexifi/gen_js_api) (for Ojs.t type) and [ocaml-js-stdlib](https://github.com/dannywillems/ocaml-js-stdlib) (for Js_dom and Js_core):
+
+* In our `data.ml`:
 ```OCaml
 let evaluation : unit -> Ojs.t =
     fun () ->
@@ -62,7 +63,7 @@ let evaluation : unit -> Ojs.t =
 let _ = set_evaluation_fn evaluation
 ```
 
-In our `test.ml`:
+* In our `test.ml`:
 ```OCaml
 let n = Node_nightmare.create true in
 let n = Node_nightmare.goto n "https://www.google.com/?q=github#safe=off&q=github" in
