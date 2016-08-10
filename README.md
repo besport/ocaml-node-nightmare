@@ -47,7 +47,7 @@ nightmare.goto("https://www.google.com/?q=github#safe=off&q=github")
          });
 ```
 
-Equivalent in OCaml using gen_js_api (for Ojs.t type):
+Equivalent in OCaml using [gen_js_api](https://github.com/lexifi/gen_js_api) (for Ojs.t type) and [ocaml-js-stdlib](https://github.com/dannywillems/ocaml-js-stdlib) (for Js_dom and Js_core):
 In our `data.ml`:
 ```OCaml
 let evaluation : unit -> Ojs.t =
