@@ -8,7 +8,7 @@ ocaml-node-nightmare is a binding to the node module nightmare in OCaml using ge
 
 ## How to install?
 
-You need to switch to OCaml **4.03.0**:
+You need to switch to OCaml >= **4.03.0** (due to gen_js_api):
 
 `opam switch 4.03.0`
 
