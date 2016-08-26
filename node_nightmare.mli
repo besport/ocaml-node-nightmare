@@ -1,4 +1,4 @@
-type t = Node.t
+type t = Node.node_module
 
 val create_obj : show:bool -> Node.require_option [@@js.builder]
 
@@ -17,6 +17,32 @@ val inject_js : t -> string -> unit
   let inject_js t s = inject t "js" s
 ]
 
+val back : t -> t [@@js.call "back"]
+
+val forward : t -> t [@@js.call "forward"]
+
+val refresh : t -> t [@@js.call "refresh"]
+
+val click : t -> string -> t [@@js.call "click"]
+
+val mousedown : t -> string -> t [@@js.call "mousedown"]
+
+val type_ : t -> string -> ?text:string -> unit -> t [@@js.call "type"]
+
+val insert : t -> string -> ?text:string -> unit -> t [@@js.call "insert"]
+
+val check : t -> string -> t [@@js.call "check"]
+
+val uncheck : t -> string -> t [@@js.call "uncheck"]
+
+val select : t -> string -> t [@@js.call "select"]
+
+val scroll_to : t -> int -> int -> t [@@js.call "scrollTo"]
+
+val viewport : t -> int -> int -> t [@@js.call "viewport"]
+
+val inject : t -> string -> string -> t [@@js.call "inject"]
+
 val then_ : t -> (Ojs.t -> unit) -> t [@@js.call "then"]
 
 val end_ : t -> unit -> t [@@js.call "end"]
@@ -24,6 +50,12 @@ val end_ : t -> unit -> t [@@js.call "end"]
 val goto : t -> string -> t [@@js.call]
 
 val wait : t -> int -> t [@@js.call]
+
+val wait_selector : t -> string -> t [@@js.call "wait"]
+
+val wait_function : t -> (Ojs.t -> bool) -> t [@@js.call "wait"]
+
+(*val header : t -> *)
 
 val evaluate : t -> Ojs.t -> t [@@js.call]
 
@@ -51,3 +83,36 @@ val set_evaluation_fn : (unit -> Ojs.t) -> unit
        (Js.Unsafe.callback fn)
     )
 ]
+
+(** Extract from the page **)
+
+val exists  : t -> string -> bool [@@js.call]
+
+val visible : t -> string -> bool [@@js.call]
+
+(** Missing on, once, removeListenenr **)
+module Bounds: sig
+  type t
+  val create:
+    x:int ->
+    y:int ->
+    width:int ->
+    height: int ->
+    t [@@js.builder]
+end
+
+val screenshot : t -> path:string -> ?clip:Bounds.t -> unit -> t [@@js.call]
+
+type save_type =
+  | HTMLOnly [@js "HTMLOnly"]
+  | HTMLComplete [@js "HTMLComplete"]
+  | HTML [@js "HTML"]
+[@@js.enum]
+
+val html  : t -> string -> save_type -> t [@@js.call]
+
+val pdf   : t -> string -> Ojs.t -> t [@@js.call]
+
+val title : t -> string [@@js.call]
+
+val url   : t -> string [@@js.call]
