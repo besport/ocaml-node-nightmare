@@ -1,3 +1,5 @@
+open Js_of_ocaml
+
 type t = Node.node_module
 
 val create_obj : show:bool -> Node.require_option [@@js.builder]
